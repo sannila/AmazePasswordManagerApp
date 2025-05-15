@@ -1,7 +1,7 @@
 <p>landing-page works!</p>
 <a [routerLink]="['../user']">User Screen....</a>
 <p>
-    <a [routerLink]="['/home']">
+    <a (click)="signOut()">
         Sign Out
     </a>
 </p>

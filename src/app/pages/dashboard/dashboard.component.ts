@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { HttpSerivceService } from '../../services/http-serivce.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,16 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
+  constructor(private httpService: HttpSerivceService, private router: Router)
+  {    
+    if(!this.httpService.userValue){
+      this.router.navigate(['/home'])
+    }
+  }
+
+
+  ngOnInit(): void {
+  }
 }

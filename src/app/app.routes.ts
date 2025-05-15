@@ -7,6 +7,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { CredentialStoreComponent } from './pages/credential-store/credential-store.component';
 import { ActivityLogsComponent } from './pages/activity-logs/activity-logs.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthGaurd } from './helpers/auth.gaurd';
 
 export const routes: Routes = [
     {
@@ -16,11 +17,12 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent,        
+        component: HomeComponent
     },
     {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGaurd],
         children: [
             {
                 path: '',

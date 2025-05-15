@@ -1,5 +1,13 @@
 <p>sign-in works!</p>
-<a [routerLink]="['/dashboard']">dashbaord Screen</a>
-<p>
-<button>Dashboard</button>
-</p>
+
+<form [formGroup]="signInForm">
+<label for="email">Email: </label>
+    <input id="email" type="email" formControlName="email" />
+
+    
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password" />
+
+    <button (click)="onSubmit()">Submit</button>
+
+</form>
