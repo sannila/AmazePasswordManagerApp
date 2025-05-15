@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
 
   onSubmit() {
     console.log('Sign in form: ', this.signInForm.value);
-    this.httpSerive.post('auth/login', this.signInForm.value).subscribe({
+    this.httpSerive.login('auth/login', this.signInForm.value).subscribe({
       next: (res: any) => {
         if (res && res.statusCode === 200) {
           this.router.navigate(['/dashboard'])

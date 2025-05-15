@@ -1,7 +1,10 @@
 <main>
+  @if(isLoggedIn){
   <header class="appHeader">
-    <app-header></app-header>
+    <app-header [isLoggedIn]="isLoggedIn"></app-header>
   </header>
+  }
+
   <section class="content">
     <router-outlet></router-outlet>
   </section>

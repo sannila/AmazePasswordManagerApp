@@ -1,7 +1,3 @@
-<p>landing-page works!</p>
-<a [routerLink]="['../user']">User Screen....</a>
-<p>
-    <a (click)="signOut()">
-        Sign Out
-    </a>
-</p>
+@if(userList){
+<app-users [userList]="userList"></app-users>
+}

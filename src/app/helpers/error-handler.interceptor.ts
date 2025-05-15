@@ -9,7 +9,6 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next): Observabl
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
-      console.log("Response Error: ", err)
       if([401, 403].includes(err.status)){
         httpService.logout();
       }

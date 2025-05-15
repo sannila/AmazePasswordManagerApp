@@ -13,9 +13,7 @@ export class AuthGaurd implements CanActivate {
         if(user){
             return true;
         }
-
         this.router.navigate(['/home']);
-        console.log('Auth Gaurd')
         return false;
     }
 

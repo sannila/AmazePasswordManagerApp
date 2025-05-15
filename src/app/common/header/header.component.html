@@ -1,1 +1,14 @@
-<p>header works!</p>
+<div>
+  <div>
+    <h3>Amaze Password Manager</h3>
+  </div>
+  <div>
+    @if (isLoggedIn) {
+    <button mat-button [matMenuTriggerFor]="menu">Profile</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>User</button>
+      <button mat-menu-item (click)="signOut()">Sign Out</button>
+    </mat-menu>
+    }
+  </div>
+</div>

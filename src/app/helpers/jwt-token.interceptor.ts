@@ -13,7 +13,6 @@ export const jwtTokenInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
-  console.log('Http Request', req);
   const httpService = inject(HttpSerivceService);
   const token = httpService.userValue;
 
