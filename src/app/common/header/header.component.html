@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <div>
     <h3>Amaze Password Manager</h3>
   </div>
@@ -11,4 +11,24 @@
     </mat-menu>
     }
   </div>
+</div> -->
+
+<header class="header">
+  <div class="logo" [routerLink]="'/'">Amaze Password Manger</div>
+  <nav class="nav-links">
+    <p-button label="Credentials" [raised]="true" [rounded]="true" />
+    <p-button label="Activity Logs" [raised]="true" [rounded]="true" />
+    <div class="card flex justify-center">
+    <p-menu #menu [model]="menuItems" [popup]="true" />
+    <p-button [icon]="'pi pi-user'" [rounded]="true" [outlined]="true" (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
 </div>
+
+    <!-- @if (isLoggedIn) {
+    <button mat-button [matMenuTriggerFor]="menu">Profile</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>User</button>
+      <button mat-menu-item (click)="signOut()">Sign Out</button>
+    </mat-menu>
+    } -->
+  </nav>
+</header>
