@@ -45,6 +45,11 @@ export class HttpSerivceService {
     });
   }
 
+  getById(endpoint: string, id: number): Observable<any>{
+    const url = `${this.baseURL}${endpoint}/${id}`
+    return this.http.get<any>(url, {headers: this.headers});
+  }
+
   login(endpoint: string, request: any): Observable<any> {
     return this.http
       .post<any>(this.baseURL + endpoint, request, { headers: this.headers })
