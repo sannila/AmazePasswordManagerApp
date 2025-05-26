@@ -7,15 +7,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 import { HttpSerivceService } from '../../services/http-serivce.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastModule],
   standalone: true,
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
-  providers: [],
+  providers: [MessageService],
 })
 export class SignInComponent implements OnInit {
   signInForm: FormGroup | undefined;
@@ -23,7 +25,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private httpSerive: HttpSerivceService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {    
     if(this.httpSerive.userValue){
       this.router.navigate(['/dashboard'])
@@ -37,7 +40,7 @@ export class SignInComponent implements OnInit {
 
   formInitializer() {
     this.signInForm = this.formBuilder.group({
-      email: ['test4@test.com', [Validators.required, Validators.email]],
+      email: ['test1@test.com', [Validators.required, Validators.email]],
       password: ['Password@123', Validators.required],
     });
   }
@@ -52,6 +55,12 @@ export class SignInComponent implements OnInit {
       },
       error: (err) => {
         console.log('Error: ', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error.message,
+          life: 3000
+        })
       },
     });
   }

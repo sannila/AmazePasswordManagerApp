@@ -10,7 +10,7 @@ import {
 import {
   category,
   CredentialInterfaces,
-} from '../../interfaces/credential-interfaces';
+} from '../../models/credential-interfaces';
 import { AccordionModule } from 'primeng/accordion';
 import { HttpSerivceService } from '../../services/http-serivce.service';
 import { TableModule } from 'primeng/table';
@@ -19,6 +19,7 @@ import { Popover, PopoverModule } from 'primeng/popover';
 import { PasswordModule } from 'primeng/password';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-credential-store',
