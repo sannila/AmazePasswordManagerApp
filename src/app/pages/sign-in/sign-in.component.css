@@ -51,6 +51,7 @@ body, html {
   font-size: 0.9rem;
   color: #0077cc;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .forgot-password:hover {

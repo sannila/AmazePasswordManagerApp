@@ -21,6 +21,8 @@ import { MessageService } from 'primeng/api';
 })
 export class SignInComponent implements OnInit {
   signInForm: FormGroup | undefined;
+  forgotPasswordForm: FormGroup;
+  isForgotPassword: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,15 +36,21 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formInitializer();
-    
+    this.signInFormInitializer();
   }
 
-  formInitializer() {
+  signInFormInitializer() {
     this.signInForm = this.formBuilder.group({
       email: ['test1@test.com', [Validators.required, Validators.email]],
       password: ['Password@123', Validators.required],
     });
+  }
+
+  forgotFormInitializer(){
+    this.forgotPasswordForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    })
   }
 
   onSubmit() {
@@ -63,5 +71,14 @@ export class SignInComponent implements OnInit {
         })
       },
     });
+  }
+
+  onForgotPassword(){
+    this.isForgotPassword = true;
+    this.forgotFormInitializer();
+  }
+
+  onUpdatePassword(){
+    console.log('this.forgotPasswordForm.value', this.forgotPasswordForm.value);
   }
 }
