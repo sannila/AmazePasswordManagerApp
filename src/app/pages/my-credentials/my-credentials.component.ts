@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   AssignedCredential,
   category,
@@ -9,31 +9,54 @@ import { MyCredentialService } from '../../services/my-credential.service';
 import { ButtonModule } from 'primeng/button';
 import { CopyClipboardDirective } from '../../common/directives/copy-clip-board.directive';
 import { TooltipModule } from 'primeng/tooltip';
+import {
+  DialogService,
+  DynamicDialogModule,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
+import { EditCredentialComponent } from './edit-credential/edit-credential.component';
 
 @Component({
   selector: 'app-my-credentials',
   standalone: true,
-  imports: [ButtonModule, TableModule, TooltipModule, CopyClipboardDirective],
+  imports: [
+    ButtonModule,
+    TableModule,
+    TooltipModule,
+    CopyClipboardDirective,
+    DynamicDialogModule,
+  ],
   templateUrl: './my-credentials.component.html',
   styleUrl: './my-credentials.component.css',
-  providers: [MyCredentialService],
+  providers: [MyCredentialService, DialogService],
 })
-export class MyCredentialsComponent implements OnInit {
+export class MyCredentialsComponent implements OnInit, OnChanges {
   @Input() assignedCredentialsList: AssignedCredential[] = [];
+  @Output() onUpdateEmitter = new EventEmitter<boolean>();
+
   credentialList: CredentialInterfaces[] = [];
   categoryList: category[] = [];
   buttonList: any[];
-  isDataLoaded: boolean = false;
   selectedCategory: number = null;
   displayCredentialList: CredentialInterfaces[] = null;
   tooltipForCopyClipBoard: string = 'Copy to clipboard';
   copyButtonIcon: string = 'pi pi-copy';
 
-  constructor(private myCredentialService: MyCredentialService) {}
+  dynamicDialogRef: DynamicDialogRef;
+
+  constructor(
+    private myCredentialService: MyCredentialService,
+    private dialogService: DialogService,
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['assignedCredentialsList'] && changes['assignedCredentialsList'].currentValue){
+      this.assignedCredentialsList = changes['assignedCredentialsList'].currentValue;
+    }
+  }
 
   ngOnInit(): void {
     console.log('assignedCredentialsList', this.assignedCredentialsList);
-    this.isDataLoaded = true;
     this.fetchCredentialDetails();
   }
 
@@ -71,7 +94,6 @@ export class MyCredentialsComponent implements OnInit {
   }
 
   onCategorySelect(event) {
-    console.log('onNodeSelect: ', event);
     this.selectedCategory = event;
     this.displayCredentialList = this.credentialList.filter(
       (c) => c.categoryId == event
@@ -79,11 +101,33 @@ export class MyCredentialsComponent implements OnInit {
   }
 
   copiedEvent(event: any) {
-      this.copyButtonIcon = event.icon;
-      this.tooltipForCopyClipBoard = event.pTooltip
-    }
+    this.copyButtonIcon = event.icon;
+    this.tooltipForCopyClipBoard = event.pTooltip;
+  }
 
-  update(id: number) {}
+  update(id: number) {
+    this.dynamicDialogRef = this.dialogService.open(EditCredentialComponent, {
+      header: 'Update',
+      width: '50vw',
+      height: '100%',
+      modal: true,
+      closable: true,
+      data: {
+        credentialId: id,
+        categoryList: this.categoryList
+      }
+    });
+
+    this.dynamicDialogRef.onClose.subscribe(result => {
+      if(result){
+        console.log('Dialog result:', result)
+        this.onCategorySelect(this.selectedCategory);
+        this.fetchCredentialDetails()
+      } else {
+        console.log('Dialog was not closed', result)
+      }
+    })
+  }
 
   delete(id: number) {}
 

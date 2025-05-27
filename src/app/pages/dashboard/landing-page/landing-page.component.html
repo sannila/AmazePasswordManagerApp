@@ -1,5 +1,5 @@
 @if(assignedCredentialsList && assignedCredentialsList.length){
-<app-my-credentials [assignedCredentialsList]="assignedCredentialsList"></app-my-credentials>
+<app-my-credentials [assignedCredentialsList]="assignedCredentialsList" (onUpdateEmitter)="onUpdateEmitter($event)"></app-my-credentials>
 } @else {
     <h3>{{errorMessage}}</h3>
 }

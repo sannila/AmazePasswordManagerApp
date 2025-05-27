@@ -70,6 +70,10 @@ export class HttpSerivceService {
       );
   }
 
+  updateById(endpoint: string, request: any): Observable<any>{
+    return this.http.put<any>(this.baseURL + endpoint, request, { headers: this.headers});
+  }
+
   logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('user');

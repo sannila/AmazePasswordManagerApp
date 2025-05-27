@@ -50,6 +50,12 @@ export class LandingPageComponent implements OnInit {
     })
   }
 
+  onUpdateEmitter(event){
+    if(event){
+      this.getAssignedCredentials();
+    }
+  }
+
   // getCategoryList() {
   //   this.httpService.get('category').subscribe({
   //     next: (res) => {
