@@ -25,6 +25,10 @@ export class UserService {
     return this.userSubject.value;
   }
 
+  isAdmin() {
+    return this.userSubject.value.role == 'Admin' ? true : false;
+  }
+
   clearUser(): void {
     localStorage.removeItem('user');
     this.userSubject.next(null);
