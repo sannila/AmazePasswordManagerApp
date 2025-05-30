@@ -79,6 +79,8 @@ export class MyCredentialsComponent implements OnInit, OnChanges {
     this.myCredentialService.getCategoryList(categoryIds).then((res) => {
       if (res) {
         this.categoryList = res;
+        this.selectedCategory = res[0].categoryId;
+        this.onCategorySelect(this.selectedCategory);
         console.log('categoryList:', this.categoryList);
         this.buildTreeNodes();
       }
@@ -121,7 +123,7 @@ export class MyCredentialsComponent implements OnInit, OnChanges {
     this.dynamicDialogRef.onClose.subscribe(result => {
       if(result){
         console.log('Dialog result:', result)
-        this.onCategorySelect(this.selectedCategory);
+        // this.onCategorySelect(this.selectedCategory);
         this.fetchCredentialDetails()
       } else {
         console.log('Dialog was not closed', result)

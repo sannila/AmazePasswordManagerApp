@@ -45,6 +45,17 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  navigateTo(routeTo: string){
+    switch (routeTo) {
+      case 'user':
+        this.router.navigate(['/dashboard/user'])
+        break;
+    
+      default:
+        break;
+    }
+  }
+
   signOut() {
     this.httpService.logout();
   }

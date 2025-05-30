@@ -16,6 +16,7 @@
 <header class="header">
   <div class="logo" [routerLink]="'/'">Amaze Password Manger</div>
   <nav class="nav-links">
+    <p-button label="Users" [raised]="true" [rounded]="true" (onClick)="navigateTo('user')"/>
     <p-button label="Credentials" [raised]="true" [rounded]="true" />
     <p-button label="Activity Logs" [raised]="true" [rounded]="true" />
     <div class="card flex justify-center">

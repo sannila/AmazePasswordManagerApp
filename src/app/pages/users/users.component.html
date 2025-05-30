@@ -1,4 +1,22 @@
-<p>users works!</p>
-<a [routerLink]="['dashboard']">Back to Dashboard</a>
-<hr />
-<a [routerLink]="['../profile']">To Profile</a>
+@if(userList && userList.length){
+<p-table [value]="userList" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #header>
+    <tr>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Is Locked</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-user>
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{getUserName(user.firstName, user.lastName)}}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.isLockedOut ? "Yes" : "No" }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+}

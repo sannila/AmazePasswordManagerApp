@@ -22,7 +22,7 @@ export interface UserModel extends IdentityUser {
   lastName?: string;
   dateOfBirth?: Date;
   loginAttempts: number;
-  isLockedOut: number;
+  isLockedOut: boolean;
   lockoutEnd: Date;
   createdAt: Date;
   updatedAt: Date;
