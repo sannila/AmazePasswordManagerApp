@@ -9,11 +9,13 @@ import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
 import { TableModule } from 'primeng/table';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [RouterModule, TableModule],
+  imports: [RouterModule, TableModule, IconFieldModule, InputIconModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
   providers: [UserService],
