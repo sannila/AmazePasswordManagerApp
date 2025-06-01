@@ -11,11 +11,18 @@ import { UserModel } from '../../models/user.model';
 import { TableModule } from 'primeng/table';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [RouterModule, TableModule, IconFieldModule, InputIconModule],
+  imports: [
+    RouterModule,
+    TableModule,
+    IconFieldModule,
+    InputIconModule,
+    ButtonModule,
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
   providers: [UserService],
@@ -47,7 +54,15 @@ export class UsersComponent implements OnInit, OnChanges {
   }
 
   getUserName(firstName: string, lastName: string) {
-    const _lastName = lastName? lastName : '';
+    const _lastName = lastName ? lastName : '';
     return firstName + ' ' + _lastName;
+  }
+
+  update(userId: number) {
+    console.log('Update for: ', userId);
+  }
+
+  delete(userId: number) {
+    console.log('delete for: ', userId);
   }
 }
