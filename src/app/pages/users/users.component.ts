@@ -5,64 +5,20 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
-import { TableModule } from 'primeng/table';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [
-    RouterModule,
-    TableModule,
-    IconFieldModule,
-    InputIconModule,
-    ButtonModule,
-  ],
+  imports: [RouterModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
   providers: [UserService],
 })
-export class UsersComponent implements OnInit, OnChanges {
-  userList: UserModel[];
+export class UsersComponent implements OnInit {
 
-  constructor(private userService: UserService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['userList'] && changes['userList']) {
-      this.userList = changes['userList'].currentValue;
-    }
-  }
-
-  ngOnInit(): void {
-    this.getUsersList();
-  }
-
-  getUsersList() {
-    this.userService
-      .getUserList()
-      .then((res) => {
-        if (res) {
-          this.userList = res;
-        }
-      })
-      .catch((err) => console.log('User List error:', err));
-  }
-
-  getUserName(firstName: string, lastName: string) {
-    const _lastName = lastName ? lastName : '';
-    return firstName + ' ' + _lastName;
-  }
-
-  update(userId: number) {
-    console.log('Update for: ', userId);
-  }
-
-  delete(userId: number) {
-    console.log('delete for: ', userId);
-  }
+  constructor(private router: Router) {}
+  ngOnInit(): void {}
 }

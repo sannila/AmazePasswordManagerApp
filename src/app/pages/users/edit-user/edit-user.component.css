@@ -1,0 +1,24 @@
+.userName_cls {
+    color: rgb(212, 145, 21);
+}
+
+.form-container{
+    display: flex;
+    margin: 1rem;
+}
+
+.form-label{
+    display: flex;
+    margin-right: 2em;
+    flex-direction: column;
+}
+
+.button-container{
+    display: flex;
+    justify-content: end;
+    margin: 1rem;
+}
+
+.button_holder{
+    margin-right: 1rem;
+}

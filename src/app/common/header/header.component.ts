@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   navigateTo(routeTo: string) {
     switch (routeTo) {
       case 'user':
-        this.router.navigate(['/dashboard/user']);
+        this.router.navigate(['/user']);
         break;
 
       default:

@@ -1,0 +1,47 @@
+@if (this.userDetails) {
+<div class="card">
+  <div class="cart-body">
+    <h2 class="card-title">
+      User: <span class="userName_cls">{{ this.userDetails.email }}</span>
+    </h2>
+    <form [formGroup]="userForm" (ngSubmit)="onUserUpdate()">
+      <div class="form-container">
+        <div class="form-label">
+          <label for="firstName">First Name</label>
+          <input type="text" pInputText formControlName="firstName" />
+        </div>
+        <div class="form-label">
+          <label for="lastName">Last Name</label>
+          <input type="text" pInputText formControlName="lastName" />
+        </div>
+        <div class="form-label">
+          <label for="firstName">Role</label>
+          <p-select
+            formControlName="role"
+            [options]="roles"
+            optionLabel="name"
+            optionValue="code"
+          />
+        </div>
+        <div class="form-label">
+          <label for="phone">Phone Number</label>
+          <p-inputmask
+            mask="99999 99999"
+            formControlName="phoneNumber"
+            placeholder="99999 99999"
+          />
+        </div>
+      </div>
+      <div class="button-container">
+        <div class="button_holder">
+          <p-button label="Update" [raised]="true" severity="success" (onClick)="onUserUpdate()" />
+        </div>
+        <div class="button_holder">
+          <p-button label="Cancel" [raised]="true" severity="secondary" (onClick)="cancelUpdate()" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<p-toast />
+}

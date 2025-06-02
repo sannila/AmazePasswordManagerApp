@@ -28,3 +28,8 @@ export interface UserModel extends IdentityUser {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface RoleModel {
+  name: string,
+  code: string,
+}

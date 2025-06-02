@@ -8,6 +8,8 @@ import { CredentialStoreComponent } from './pages/credential-store/credential-st
 import { ActivityLogsComponent } from './pages/activity-logs/activity-logs.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGaurd } from './helpers/auth.gaurd';
+import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { UserListComponent } from './pages/users/user-list/user-list.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +20,28 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'user',
+        component: UsersComponent,
+        canActivate: [AuthGaurd],
+        title: 'User',
+        children: [
+            {
+                path: '',
+                redirectTo: 'list', pathMatch: 'full'
+            },
+            {
+                path: 'list',
+                component: UserListComponent,
+                title: 'User',
+            },
+            {
+                path: 'edit/:id',
+                component: EditUserComponent,
+                title: 'User'
+            }
+        ]
     },
     {
         path: 'dashboard',
@@ -32,11 +56,6 @@ export const routes: Routes = [
                 path: 'landingPage',
                 component: LandingPageComponent,
                 title: "Dashboard"
-            },
-            {
-                path: 'user',
-                component: UsersComponent,
-                title: 'User'
             },
             {
                 path: 'category',

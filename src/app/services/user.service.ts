@@ -53,4 +53,14 @@ export class UserService {
         .catch((err) => reject(err))
     );
   }
+
+  updateUser(userId: number, requestBody: UserModel) {
+    return new Promise<any>((resolve, reject) => {
+      this.httpService
+        .updateById(`user/${userId}`, requestBody)
+        .toPromise()
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
 }

@@ -1,0 +1,53 @@
+.card{
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.3);
+    border-radius: 8px;
+}
+
+
+.header_card {
+    box-shadow: 0px 0px 3px 0px rgba(59, 135, 165, 0.904);
+}
+
+.custom-caption {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa; /* Light background for subtle elevation */
+  border-bottom: 0px solid #dee2e6;
+  border-top-left-radius: 0.5rem;
+  border-radius: 8px;
+  border-top-right-radius: 0.5rem;
+}
+
+.custom-caption p-iconField {
+  width: 300px;
+  max-width: 100%;
+}
+
+.custom-caption input[pInputText] {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.custom-caption input[pInputText]:focus {
+  border-color: #5c9ded;
+  box-shadow: 0 0 0 0.2rem rgba(92, 157, 237, 0.25);
+  outline: none;
+}
+
+.custom-caption i.pi {
+  color: #6c757d;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.custom-caption p-inputicon {
+    margin-right: 1rem;
+}
