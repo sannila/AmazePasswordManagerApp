@@ -1,6 +1,6 @@
-@if (this.userDetails) {
-<div class="card">
-  <div class="cart-body">
+@if (this.userDetails){
+<div class="card card-centered">
+  <div class="card-body">
     <h2 class="card-title">
       User: <span class="userName_cls">{{ this.userDetails.email }}</span>
     </h2>
@@ -15,13 +15,13 @@
           <input type="text" pInputText formControlName="lastName" />
         </div>
         <div class="form-label">
-          <label for="firstName">Role</label>
+          <label for="role">Role</label>
           <p-select
             formControlName="role"
             [options]="roles"
             optionLabel="name"
             optionValue="code"
-          />
+          ></p-select>
         </div>
         <div class="form-label">
           <label for="phone">Phone Number</label>
@@ -29,15 +29,25 @@
             mask="99999 99999"
             formControlName="phoneNumber"
             placeholder="99999 99999"
-          />
+          ></p-inputmask>
         </div>
       </div>
       <div class="button-container">
         <div class="button_holder">
-          <p-button label="Update" [raised]="true" severity="success" (onClick)="onUserUpdate()" />
+          <p-button
+            label="Update"
+            [raised]="true"
+            severity="success"
+            (onClick)="onUserUpdate()"
+          />
         </div>
         <div class="button_holder">
-          <p-button label="Cancel" [raised]="true" severity="secondary" (onClick)="cancelUpdate()" />
+          <p-button
+            label="Cancel"
+            [raised]="true"
+            severity="secondary"
+            (onClick)="cancelUpdate()"
+          />
         </div>
       </div>
     </form>
